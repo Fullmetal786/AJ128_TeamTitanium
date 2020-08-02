@@ -1,4 +1,4 @@
-#include <NTPClient.h>
+#include <NTPClient.h>  // Library for NTP which will get timestamp from ntp server
 #include <WiFiUdp.h>
 
 #include <ESP8266WiFi.h>
@@ -6,15 +6,11 @@
 #include <ESP8266HTTPClient.h>
 #include <HX711.h>
 #include <WiFiClient.h>
-
-
-// Set these to run example.
 const char FIREBASE_HOST [] ="nodemcu-1212e.firebaseio.com";
-
-const char FIREBASE_AUTH [] ="3DIEuRkABn2lZuFDaUSg9wwk87yQPZ2LjBb7q902";
+const char FIREBASE_AUTH [] ="3DIEuRkABn2lZuFDaUSg9wwk87yQPZ2LjBb7q902"; //firebase project credentials
 #define WIFI_SSID "AirtelWifi"
 #define WIFI_PASSWORD "Ankush31@Pragati17"
-const long utcOffsetInSeconds = 19800;
+const long utcOffsetInSeconds = 19800; 
 float weight;
 HX711 scale;
 //LDR Pin Connected at A0 Pin
@@ -63,7 +59,7 @@ void setup()
     timeClient.begin();
     Firebase.begin(FIREBASE_HOST,FIREBASE_AUTH);
 
-    //Firebase.setFloat("Value",6.9);
+    
 
 
 }
@@ -128,7 +124,6 @@ void loop()
     // ==========================================
   //          Data Uploading to Firebase
   // ==========================================
-//    Firebase.pushFloat("Weight",grams);
 Firebase.pushString("Weight",fireTemp);
     // handle error
     if (Firebase.failed())
