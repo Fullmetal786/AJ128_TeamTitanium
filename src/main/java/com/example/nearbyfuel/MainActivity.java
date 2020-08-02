@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
                 case R.id.nav_feul:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FuelFragment()).commit();
                     break;
+                case R.id.nav_dis:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DisFragment()).commit();
+                    break;
             }
             return true;
         }
