@@ -70,8 +70,9 @@ public class HomeFragment extends Fragment {
                         message = s;
                         Log.d(TAG, "onDataChange: message= "+message);
                         float f1 = Float.parseFloat(message.substring(0,4));
-                        fuel = f1;
+
                         double q = f1/0.74;
+                        fuel = (float)q;
                         quantity.setText(String.format("%.3f",q)+" ml");
                         message=String.format("%.3f",f1);
                         value.setText("Weight  :  " + message+ "gm");
@@ -93,10 +94,4 @@ public class HomeFragment extends Fragment {
         });
         return v;
     }
-
-    public static String getName()
-    {
-        return name;
-    }
-
 }
