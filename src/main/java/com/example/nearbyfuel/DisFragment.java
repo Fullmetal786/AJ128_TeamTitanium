@@ -27,7 +27,6 @@ public class DisFragment extends Fragment {
 
     private static final String TAG = "DisFragment";
     TextView showDis;
-    Button calculate;
     EditText mileage;
 
     @Override
@@ -36,7 +35,6 @@ public class DisFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_dis, container, false);
         showDis = v.findViewById(R.id.showDis);
-        calculate = v.findViewById(R.id.calculate);
         mileage = v.findViewById(R.id.mileage);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -46,10 +44,23 @@ public class DisFragment extends Fragment {
 
             public void onClick(View v) {
 
-            double fuel=HomeFragment.fuel;
-            String val=mileage.getText().toString();
+                double fuel = HomeFragment.fuel;
+                if (fuel != 0) {
+                    if(mileage.getText().toString().matches(""))
+                    {
+                        mileage.setError("Please enter some value");
+                    }
+                    else
+                        {
+                        String val = mileage.getText().toString();
+                        double value = fuel * Float.parseFloat(val);
+                        showDis.setText(String.format("%.3f",value) + " m");
+                    }
+                    } else {
+                    showDis.setError("Please fetch the fuel in first fragment");
+                    showDis.setText("Please fetch the fuel in first fragment");
+                }
 
-            showDis.setText(fuel*Float.parseFloat(val)+" m");
             }
         });
         return v;
