@@ -43,6 +43,28 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
         }
     };
 
+    
+     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_bar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_logout:
+                AuthUI.getInstance().signOut(this);     //OnAuthStateChanged will be invoked
+                Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    
     private void startLoginActivity()
     {
         Intent intent=new Intent(this,LoginActivity.class);
