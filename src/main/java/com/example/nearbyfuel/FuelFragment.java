@@ -117,7 +117,9 @@ public class FuelFragment extends Fragment implements OnMapReadyCallback, Google
         }
     }
 
-
+/*
+* This method is to find the current location of the user.
+*/
     private void getCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -169,9 +171,8 @@ public class FuelFragment extends Fragment implements OnMapReadyCallback, Google
 
             @Override
             public void onClick(View v) {
-
-                Log.d(TAG, "onClick: Button clicked");
-                // mMap.clear();
+                
+                //This is code for fetching nearby petrol stations. 
                 String url = "https://api.tomtom.com/search/2/search/petrol%20pump.json?key=Z8AhQfamLYwQYG6AVzec1I1vMYoAOjYh" +
                         "&lat=" + latitude +
                         "&lon=" + longitude +
@@ -194,7 +195,11 @@ public class FuelFragment extends Fragment implements OnMapReadyCallback, Google
             public View getInfoWindow(Marker marker) {
                 return null;
             }
-
+            
+            
+            /*
+            *This is to display contents in different way rather than the default way. 
+            */
             @Override
             public View getInfoContents(Marker marker) {
                 View infoWindow = getLayoutInflater().inflate(R.layout.marker_info_window,
@@ -216,6 +221,9 @@ public class FuelFragment extends Fragment implements OnMapReadyCallback, Google
         });
     }
 
+    /*
+    * This method is to fetch the price of Petrol and Diesel of the city of current location. 
+    */
     private void fetchPrice(final String cityName) {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -298,26 +306,12 @@ public class FuelFragment extends Fragment implements OnMapReadyCallback, Google
         latitude = location.getLatitude();
         longitude = location.getLongitude();
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(latLng);
-//        markerOptions.title("Current Position "+latitude +" , "+longitude);
-//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-//        mCurrLocationMarker = map.addMarker(markerOptions);
-//
-//        //move map camera
-//        //map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-////        map.animateCamera(CameraUpdateFactory.zoomTo(11));
-//        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 18));
-//        Toast.makeText(getContext(),"Your Current Location", Toast.LENGTH_LONG).show();
-        Log.d(TAG, "onLocationChanged: Current location : "+latitude+" , "+longitude);
-        Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f",latitude,longitude));
 
         //stop location updates
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
             Log.d("onLocationChanged", "Removing Location Updates");
         }
-        Log.d("onLocationChanged", "Exit");
 
     }
     @Override
