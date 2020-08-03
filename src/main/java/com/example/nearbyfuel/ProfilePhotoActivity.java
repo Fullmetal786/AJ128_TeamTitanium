@@ -227,6 +227,7 @@ public class ProfilePhotoActivity extends AppCompatActivity {
                 Toast.makeText(ProfilePhotoActivity.this, "Failed to upload "+e.getCause(), Toast.LENGTH_SHORT).show();
             }
         });
+        // 
 
     }
     private void getDownloadUrl(StorageReference reference){
