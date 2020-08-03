@@ -103,6 +103,6 @@ public class DataParser extends AppCompatActivity {
         return googlePlaceMap;
     }
 
-
+  
 
 }
